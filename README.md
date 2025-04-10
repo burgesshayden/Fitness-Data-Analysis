@@ -22,5 +22,6 @@ In this project, I:
 3. Load the data file by running the code chunk that loads `fitness_data.Rdata`.
 4. Render the `.qmd` file to see the final report (as HTML, PDF, or Word).
 
-```r
-load("fitness_data.Rdata")
+## Rendered Final Report
+
+- [Final_Project_STAT363.pdf](Final_Project_STAT363.pdf) – View the final rendered version of the project.

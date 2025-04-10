@@ -1,0 +1,267 @@
+---
+title: "Analysis of Exercise Habits, Heart Rate, and Calorie Burn Across Workout Types and Genders"
+author: "Hayden Burgess"
+format: pdf
+editor: visual
+---
+
+```{r}
+#| include: FALSE
+library(tidyverse)
+library(ggplot2)
+library(ggridges)
+
+load("C:/Users/burge/OneDrive/Desktop/fitness_data.Rdata")
+```
+
+## Abstract
+
+This study examines how exercise habits, heart rate, and calorie expenditure vary across workout types and genders. This research identifies key trends in fitness routines by analyzing workout duration, heart rate, and calorie burn. The findings show that exercise duration remains consistent between genders, but differences exist in specific workout types. Heart rate positively correlates with calorie expenditure. HIIT (High Intensity Interval Training) and cardio show the strongest relationship. In addition, HIIT and strength training lead to the highest calorie burn, with males generally expending more calories than females, this is likely due to differences in body weight and muscle mass. These insights add to a broader understanding of exercise efficiency and gender based fitness trends.
+
+## Introduction
+
+Understanding exercise habits and their impact on important health matters such as heart rate and calorie expenditure is critical when developing effective fitness programs. Different workout types engage the body in different ways, this affects heart rate responses and energy consumption. While gender differences in physical activity are often observed, this study wants to measure these changes by looking at organized exercise data. The primary research questions focus on how exercise habits, including exercise type and duration, vary by gender, how heart rate fluctuates across different workouts and its relationship to calories burned, and which workout types are most effective for calorie expenditure and whether this trend is influenced by gender.
+
+## Methods
+
+Data for this study was collected from the Gym Members Exercise Dataset (Kaggle), which contains information on exercise habits and physiological metrics. It was collected to allow for analysis of fitness patterns, athlete progression, and health trends. It includes 973 samples of several key variables, which were analyzed to address the research questions. Age, gender, and workout type were used to examine variations in exercise habits. Session duration was measured in hours to assess workout commitment levels. Heart rate data, including maximum BPM, average BPM, and resting BPM, were used to explore its relationship with calories that are burned. Calorie burn was measured by how many calories were used in each session, and weight and body fat percentage were added to see how they might affect metabolism. Other factors such as water intake (liters), workout frequency (days per week), and experience level (beginner to expert) were considered to provide some more insights on exercise behavior.
+
+## Results
+
+The analysis of exercise habits by gender show that males and females engage in workouts that have a similar duration across all exercise types, but slight variations do exist. Male yoga sessions tend to have slightly longer durations, while female cardio workouts show slightly lower median durations. Yoga workouts show greater variability in session length compared to other exercises. Strength training for males shows outliers, with some individuals engaging in significantly longer sessions, aligning with societal trends emphasizing male participation in strength-based workouts. Even though these differences are present, the overall distribution of workout durations is still comparable between genders, showing similar commitment levels in exercise time. Figure 1 shows the distribution of workout durations across different exercise types, revealing that yoga sessions have higher variability compared to strength training. The confidence intervals calculated in Table 1, which are generally overlapping, also reinforce the idea that session duration is not drastically different between males and females.
+
+A positive correlation is seen between average heart rate and calories burned across all workout types. The correlation coefficient for cardio is 0.345, while HIIT has a stronger correlation at 0.418, suggesting that higher heart rates increase calorie burn. Strength training and yoga show weaker correlations, with coefficients of 0.297 and 0.313, which means that other factors, such as workout intensity or duration, may influence calorie expenditure. Despite these differences, the general trend remains consistent, higher heart rates lead to greater calorie burn, regardless of workout type. As shown in Figure 2, the correlation between heart rate and calories burned is strongest in HIIT and cardio workouts, suggesting a direct relationship between intensity and energy expenditure. Heart rate trends over time were also examined in Figure 3. There is a lot of fluctuation as the year progresses. Despite the ups and downs, there is still a slight increase in heart rate over time. This could suggest that people began to gain more motivation as the year went on, leading to increasing the intensity of their training sessions. This also helps explain why heart rate and calories burned are related.
+
+The analysis of calorie expenditure indicates that HIIT and strength workouts result in the highest calorie burn, while cardio and yoga demonstrate lower median calorie expenditures. Males generally burn more calories than females across all workout types, probably due to greater body mass and muscle composition differences. A hypothesis test was conducted at the alpha = .01 level to determine whether the mean calories burned by males was greater than the mean calories burned by females across all workout types. The results are shown in Table 2, and they show that there is a statistically significant difference between calories burned by gender for all workout types except yoga. For HIIT, cardio, and strength, the very low p-values (\<0.01) indicate that males burn significantly more calories than females. For yoga, the high p-value (0.398) means there is no strong statistical evidence that males burn more calories than females. While gender-based variations exist, workout type remains a primary reason for the calorie burn. The calorie burn distribution in Figure 4 indicates that HIIT and strength training consistently result in the highest energy expenditure.
+
+Interestingly, additional analysis in Figure 5 suggests that BMI is not a strong predictor of calorie expenditure across different workout types. While it was at first expected that males burn more calories due to differences in body composition, the weak correlation between BMI and calories burned across all workout types indicates that other factors such as experience level and workout duration may play a bigger role. Both of these factors were tested with additional plotting. Figure 6 highlights that higher experience levels lead to more calories burned. People with more experience tend to engage in more rigorous workouts, leading to greater calorie expenditure. This supports the idea that fitness level is a better predictor of calories burned than gender, heart rate, or BMI. Figure 7 reveals that people with higher experience levels engage in longer workouts. Higher experience level indicates a strong motivation for fitness goals which could contribute to these longer sessions. Finally, Figure 8 shows that session duration is strongly correlated (0.91) with calories burned. These additional findings emphasize that while gender differences exist in calorie burn, experience level and workout duration are better determinants of overall calories burned.
+
+## Discussion
+
+The findings highlight the effectiveness of high-intensity workouts, particularly HIIT and strength training, in maximizing calorie expenditure. The observed gender differences align with societal stereotypes, where male participants typically engage in higher intensity workouts, leading to increased calorie burn. However, the overlap between male and female calorie expenditure suggests that fitness outcomes are more influenced by experience level and session duration rather than gender alone. Evidence was found that experience level plays a significant role in calorie burn, mainly due to the fact that more experienced people engage in longer sessions. This is further supported by the strong correlation (0.91) between session duration and calories burned. Furthermore, the weak correlation between BMI and calorie burn across all workout types challenges the assumption that males burn more calories due to higher BMI. Instead, these findings indicate that individual experience level and workout engagement are more important factors in determining calories burned.
+
+## Conclusion
+
+This study provides insights into exercise habits, heart rate responses, and calorie burn across workout types and genders. The main takeaways include the observation that workout duration is generally consistent between genders, with minor variations. Heart rate strongly correlates with calorie burn, particularly in high-intensity workouts. HIIT and strength training are the most effective for maximizing energy expenditure. While males tend to burn more calories, gender alone does not dictate workout effectiveness. The weak correlation between BMI and calorie burn suggests that other factors, such as experience level and session duration, are more important in determining energy expenditure. Additional analysis confirmed the strong relationship between experience level, session duration, and calories burned. Future research could explore additional factors such as metabolic rates, individual fitness goals, and engagement levels to provide a better understanding of exercise efficiency. These findings suggest that improving fitness level is more dependent on consistency and training habits, rather than biological differences.
+
+## Appendix 1
+
+\[Figure 1\]
+
+```{r, message=FALSE}
+#| echo: FALSE
+
+# Exercise Duration by Workout Type and Gender
+ggplot(fitness_data, aes(x = session_duration, y = workout_type, fill = gender)) +
+  geom_density_ridges(alpha = 0.7, scale = 1.5) +
+  labs(title = "Exercise Duration by Workout Type and Gender",
+       x = "Session Duration (hours)",
+       y = "Workout Type") +
+  theme_minimal() +
+  scale_fill_manual(values = c("Female" = "tomato", "Male" = "steelblue")) +
+  theme(legend.position = "top")
+```
+
+\[Table 1\]
+
+```{r, message=FALSE, warning=FALSE}
+#| echo: FALSE
+
+# group by gender and workout type
+ci_results = fitness_data |>
+  group_by(gender, workout_type) |>
+  summarise(
+    mean_duration = mean(session_duration, na.rm = TRUE),
+    sd_duration = sd(session_duration, na.rm = TRUE),
+    n = sum(!is.na(session_duration)),  # count non-NA values
+    se = sd_duration / sqrt(n),  # standard Error
+    ci = qt(0.975, df = n - 1) * se,  # 95% CI 
+    lower_CI = mean_duration - ci,  # lower bound
+    upper_CI = mean_duration + ci   # upper bound
+  ) |>
+  select(gender, workout_type, lower_CI, upper_CI)
+
+knitr::kable(ci_results)
+```
+
+\[Figure 2\]
+
+```{r, message=FALSE}
+#| echo: FALSE
+
+# Heart Rate, Workout Type, and Calories Burned
+ggplot(fitness_data, aes(x = avg_bpm, y = calories_burned)) +
+  geom_point(aes(color = workout_type), alpha = 0.6, size = 2) +
+  geom_smooth(method = "lm", se = TRUE, color = "red", fill = "pink") +
+  facet_wrap(~ workout_type) +  # Separate plots by workout type
+  labs(
+    title = "Heart Rate and Calories Burned by Workout Type",
+    x = "Average Heart Rate (BPM)", y = "Calories Burned",
+    color = "Workout Type"
+  ) +
+  theme_minimal()
+```
+
+\[Figure 3\]
+
+```{r, message=FALSE}
+#| echo: FALSE
+
+heart_rate_trend = fitness_data |>
+  group_by(workout_date) |>
+  summarize(avg_heart_rate = mean(avg_bpm, na.rm = TRUE))
+
+ggplot(heart_rate_trend, aes(x = workout_date, y = avg_heart_rate)) +
+  geom_line(color = "#87CEEB") +  
+  geom_point(color = "darkorange", size = .5) +  
+  labs(title = "Heart Rate Trends Over Time",
+       x = "Date",
+       y = "Average Heart Rate (BPM)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  
+  geom_smooth(method = "loess", color = "black", se = FALSE, span = 0.2)  
+
+```
+
+\[Figure 4\]
+
+```{r}
+#| echo: FALSE
+
+# Workout Type vs Calories Burned
+ggplot(fitness_data, aes(x = workout_type, y = calories_burned, fill = gender)) +
+  geom_boxplot(
+    data = fitness_data,
+    outlier.color = "orchid3"
+  ) + 
+  labs(
+    title = "Workout Type vs Calories Burned",
+    x = "Workout Type", y = "Calories Burned"
+  ) +
+  scale_fill_manual(values = c("Female" = "tomato", "Male" = "steelblue")) +
+  theme_minimal()
+```
+
+\[Table 2\]
+
+```{r}
+#| echo: FALSE
+
+results = fitness_data |>
+  group_by(workout_type) |>
+  summarize(
+    Male_Mean_Calories = mean(calories_burned[gender == "Male"], na.rm = TRUE),
+    Female_Mean_Calories = mean(calories_burned[gender == "Female"], na.rm = TRUE),
+    T_Statistic = t.test(calories_burned[gender == "Male"], calories_burned[gender == "Female"], var.equal = FALSE)$statistic,
+    P_Value = t.test(calories_burned[gender == "Male"], calories_burned[gender == "Female"], var.equal = FALSE)$p.value
+  )
+
+knitr::kable(results)
+```
+
+\[Figure 5\]
+
+```{r, message=FALSE}
+#| echo: FALSE
+
+# BMI, Workout Type, and Calories Burned
+ggplot(fitness_data, aes(x = bmi, y = calories_burned)) +
+  geom_point(aes(color = workout_type), alpha = 0.6, size = 2) +
+  geom_smooth(method = "lm", se = TRUE, color = "red", fill = "pink") +
+  facet_wrap(~ workout_type) +  # Separate plots by workout type
+  labs(
+    title = "BMI and Calories Burned by Workout Type",
+    x = "BMI", y = "Calories Burned",
+    color = "Workout Type"
+  ) +
+  theme_minimal()
+```
+
+\[Figure 6\]
+
+```{r, message=FALSE}
+#| echo: FALSE
+ggplot(fitness_data, aes(x = as.factor(experience_level), y = calories_burned, fill = as.factor(experience_level))) +
+  geom_boxplot(
+    data = fitness_data,
+    outlier.color = "orchid3"
+  ) + 
+  labs(
+    title = "Experience Level and Calories Burned",
+    x = "Experience Level", y = "Calories Burned"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") 
+```
+
+\[Figure 7\]
+
+```{r, message=FALSE}
+#| echo: FALSE
+ggplot(fitness_data, aes(x = session_duration, y = experience_level)) +
+  geom_point(color = "orange", alpha = 0.5) +  # Scatter points
+  geom_smooth(method = "lm", color = "blue", se = TRUE) +  # Regression line with confidence interval
+  labs(title = "Dependence of Experience Level on Session Duration",
+       x = "Session Duration (hours)",
+       y = "Experience Level") +
+  theme_minimal()
+```
+
+\[Figure 8\]
+
+```{r, message=FALSE}
+#| echo: FALSE
+cor1 = cor(fitness_data$session_duration, fitness_data$calories_burned)
+
+ggplot(fitness_data, aes(x = session_duration, y = calories_burned)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  labs(title = paste("Session Duration vs Calories Burned\nCorrelation:", round(cor1, 2)),
+       x = "Session Duration (hours)",
+       y = "Calories Burned") +
+  theme_minimal()
+```
+
+## Appendix 2
+
+|  |  |  |  |  |  |  |  |  |
+|----|----|----|----|----|----|----|----|----|
+|  |  |  |  |  |  |  |  |  |
+|  | **Variable** |  | **Description** |  | **Type** |  | **Source** |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Age (years) |  | Age of the gym member |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Gender (Male/Female) |  | Gender of the gym member (Male or Female) |  | Categorical |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Weight (kg) |  | Member’s weight in kilograms |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Height (m) |  | Member’s height in meters |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Max_BPM (BPM) |  | Maximum heart rate (beats per minute) during workout sessions |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Avg_BPM (BPM) |  | Average heart rate during workout sessions |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Resting_BPM (BPM) |  | Heart rate at rest before workout |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Session_Duration (hours) |  | Duration of each workout session in hours |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Calories_Burned (total calories) |  | Total calories burned during each session |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Workout_Type |  | Type of workout performed (e.g., Cardio, Strength, Yoga, HIIT) |  | Categorical |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Fat_Percentage (percent) |  | Body fat percentage of the member |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Water_Intake (liters) |  | Daily water intake during workouts |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Workout_Frequency (days/week) |  | Number of workout sessions per week |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Experience_Level |  | Level of experience, from beginner (1) to expert (3) |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | BMI |  | Body Mass Index, calculated from height and weight |  | Quantitative |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+|  | Workout_Date (YYYY-MM-DD) |  | Date the workout took place |  | Date |  | Gym Members Exercise Dataset (Kaggle) |  |
+|  |  |  |  |  |  |  |  |  |
+
+1.  How do exercise habits (e.g., exercise type, duration) vary by age or gender? (Variables: age, gender, workout type, session duration)
+2.  How does heart rate vary by workout type and duration, and how does it relate to calories burned? (Variables: Max BPM, Avg BPM, Resting BPM, Workout Type, Session Duration, Calories Burned)
+3.  What workout types led to the most calories being burned? Is it also linked to gender, weight and heart rate? (Variables: workout type, calories burned, gender, weight, avg BPM)

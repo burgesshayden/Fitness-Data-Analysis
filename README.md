@@ -1,4 +1,3 @@
-# Fitness Data Analysis
 # Final Project – STAT 363
 
 This repository contains the final project for my STAT 363 course, completed in R using Quarto. This study examines how exercise habits, heart rate, and calorie expenditure vary across workout types and genders. This research identifies key trends in fitness routines by analyzing workout duration, heart rate, and calorie burn.
